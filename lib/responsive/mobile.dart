@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_responsive/widgets/my_boxes.dart';
 import 'package:flutter_responsive/widgets/widgets.dart';
+
+import '../widgets/my_tile.dart';
 
 class Mobile extends StatefulWidget {
   const Mobile({super.key});
@@ -13,31 +16,35 @@ class _MobileState extends State<Mobile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: myAppBar,
-      drawer: myDrawer(context),
+      // drawer: const MyDrawer(),
       body: Column(
-        children: [
-          AspectRatio(
+        children: const [
+          MyBoxes(
             aspectRatio: 1,
-            child: SizedBox(
-              width: double.infinity,
-              child: GridView.builder(
-                itemCount: 4,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                ),
-                itemBuilder: (context, index) {
-                  return myBox();
-                },
-              ),
-            ),
+            crossAxisCount: 2,
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                return myTile();
-              },
-            ),
+          Expanded(child: MyTile()),
+        ],
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white60,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: 'Search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: 'Favorite',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person),
+            label: 'Profile',
           ),
         ],
       ),

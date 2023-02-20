@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_responsive/widgets/drawer.dart';
+import 'package:flutter_responsive/widgets/my_tile.dart';
 import 'package:flutter_responsive/widgets/widgets.dart';
+
+import '../widgets/my_boxes.dart';
 
 class Tablet extends StatefulWidget {
   const Tablet({super.key});
@@ -13,32 +17,14 @@ class _TabletState extends State<Tablet> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: myAppBar,
-      drawer: myDrawer(context),
+      drawer: const MyDrawer(),
       body: Column(
-        children: [
-          AspectRatio(
+        children: const [
+          MyBoxes(
             aspectRatio: 4,
-            child: SizedBox(
-              width: double.infinity,
-              child: GridView.builder(
-                itemCount: 4,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4,
-                ),
-                itemBuilder: (context, index) {
-                  return myBox();
-                },
-              ),
-            ),
+            crossAxisCount: 4,
           ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: 4,
-              itemBuilder: (context, index) {
-                return myTile();
-              },
-            ),
-          ),
+          Expanded(child: MyTile()),
         ],
       ),
     );

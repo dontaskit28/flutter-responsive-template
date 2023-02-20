@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_responsive/widgets/drawer.dart';
+import 'package:flutter_responsive/widgets/my_boxes.dart';
 import 'package:flutter_responsive/widgets/widgets.dart';
+
+import '../widgets/my_tile.dart';
 
 class Desktop extends StatefulWidget {
   const Desktop({super.key});
@@ -12,38 +16,22 @@ class _DesktopState extends State<Desktop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: myAppBar,
+      appBar: myAppBar,
       body: Row(
         children: [
-          myDrawer(context),
+          const Expanded(
+            flex: 1,
+            child: MyDrawer(),
+          ),
           Expanded(
             flex: 2,
             child: Column(
-              children: [
-                AspectRatio(
+              children: const [
+                MyBoxes(
                   aspectRatio: 4,
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: GridView.builder(
-                      itemCount: 4,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4,
-                      ),
-                      itemBuilder: (context, index) {
-                        return myBox();
-                      },
-                    ),
-                  ),
+                  crossAxisCount: 4,
                 ),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      return myTile();
-                    },
-                  ),
-                ),
+                Expanded(child: MyTile()),
               ],
             ),
           ),
